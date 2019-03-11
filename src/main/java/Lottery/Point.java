@@ -3,7 +3,6 @@ package Lottery;
 import java.util.HashMap;
 
 public class Point {
-
     private HashMap<Integer, Integer> users = new HashMap<>();
 
     public int getUserPoint(int userID) {
