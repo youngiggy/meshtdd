@@ -1,16 +1,13 @@
 package Lottery;
 
-public class User {
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
-    private int id;
+@Getter
+@Setter
+@AllArgsConstructor
+class User {
+    private Long id;
     private String name;
-
-    User(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public int getUserId() {
-        return id;
-    }
 }

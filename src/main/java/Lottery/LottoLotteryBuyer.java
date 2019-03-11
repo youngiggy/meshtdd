@@ -9,34 +9,33 @@ import java.util.List;
 
 @Setter
 @Getter
-public class LottoLotteryBuyer implements LotteryBuyer {
+public class LottoLotteryBuyer extends User implements LotteryBuyer {
 
-    private final int LOTTERY_PRICE = 100;
+    private final Long LOTTERY_PRICE = 100L;
 
-    private User buyer;
-    private Point wallet = new Point();
+    private PointService wallet = new PointService();
     private List<Lottery> lotteries = new ArrayList<>();
 
     private LotteryService lotteryService = new LottoLotteryServiceImpl();
 
-    public LottoLotteryBuyer(User buyer) {
-        this.buyer = buyer;
-        wallet.deposit(buyer.getUserId(), 500);
+    LottoLotteryBuyer(Long userId, String username) {
+        super(userId, username);
+        wallet.deposit(this.getId(), 500L);
     }
 
     @Override
-    public void depositBuyerPoint(int point) {
-        wallet.deposit(buyer.getUserId(), point);
+    public void depositBuyerPoint(Long point) {
+        wallet.deposit(this.getId(), point);
     }
 
     @Override
     public void buyLotteries(int count) {
         lotteries.addAll(lotteryService.createLotteries(count));
-        wallet.withdraw(buyer.getUserId(), count * LOTTERY_PRICE);
+        wallet.withdraw(this.getId(), count * LOTTERY_PRICE);
     }
 
     @Override
-    public int getCurrentBuyerPoint() {
-        return wallet.getUserPoint(buyer.getUserId());
+    public Long getCurrentPoint() {
+        return wallet.getUserPoint(this.getId());
     }
 }

@@ -4,13 +4,11 @@ public class Main {
 
     public static void main (String[] args)
     {
-        User user = new User(1, "userNo1");
-
         // New lottery service hered
-        LotteryBuyer lotteryService = new LottoLotteryBuyer(user);
+        LotteryBuyer lotteryService = new LottoLotteryBuyer(1L, "userNo1");
         lotteryService.buyLotteries(5);
 
         // End to end test
-        System.out.printf("user has %d points now.", lotteryService.getCurrentBuyerPoint());
+        System.out.printf("user has %d points now.", lotteryService.getCurrentPoint());
     }
 }
